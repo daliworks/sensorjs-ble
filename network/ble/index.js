@@ -115,7 +115,7 @@ Ble.prototype.discover = function (driverName/*or model*/, options, cb) {
 
         if (peripheral.advertisement && peripheral.advertisement.localName && props && props.bleLocalName &&
             peripheral.advertisement.localName.toUpperCase() === props.bleLocalName.toUpperCase()) {
-          var device = new Device(self, peripheral.uuid,
+          var device = new Device(self, peripheral.uuid, null,
               [{ id: model + '-' + peripheral.uuid, model: model }]);
 
           founds.push(device);
@@ -289,7 +289,7 @@ Ble.prototype._discover = function (addr, model, serviceUUID, options, cb) {
 
           _.forEach(services, function (service) {
             if (service.uuid === props.ble.service) {
-              device = new Device(self, peripheral.uuid,
+              device = new Device(self, peripheral.uuid, null
                           [{id:model + '-' + peripheral.uuid,
                             model: model,
                             deviceHandle: peripheral}]);
